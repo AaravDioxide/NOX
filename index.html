@@ -34,7 +34,7 @@
             min-height: 100vh;
         }
 
-        h1, h2, h3, .logo-text, .nav-links li, .price-amount {
+        h1, h2, h3, .logo-text, .nav-links li, .price-amount, .contact-name {
             /* Prioritizes Blanka if installed, falls back to Orbitron */
             font-family: 'Blanka', 'Orbitron', sans-serif; 
             letter-spacing: 2px;
@@ -160,6 +160,14 @@
             border-radius: 12px;
         }
 
+        .hero-title {
+            font-size: 5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #fff, var(--secondary-accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
         .hero-subtitle {
             font-size: 1.2rem;
             color: var(--secondary-accent);
@@ -231,7 +239,7 @@
             line-height: 1.5;
         }
 
-        /* --- PAGE 5: PRICING --- */
+        /* --- PAGE 4: PRICING --- */
         .pricing-grid {
             display: flex;
             flex-wrap: wrap;
@@ -289,18 +297,141 @@
             flex-grow: 1;
         }
 
-        /* --- PAGE 4: CONTACT --- */
+        /* --- PAGE 5: CONTACT --- */
         .contact-handle {
             font-size: 2rem;
             color: var(--secondary-accent);
             text-decoration: none;
             transition: color 0.3s, text-shadow 0.3s;
             margin-top: 20px;
+            display: inline-block;
         }
 
         .contact-handle:hover {
             color: var(--text-main);
             text-shadow: 0 0 15px var(--primary-accent);
+        }
+
+        .contact-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-top: 40px;
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 12px;
+            border: 1px solid var(--primary-accent);
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .contact-item {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        
+        .contact-number {
+            font-size: 1.2rem;
+            color: var(--secondary-accent);
+        }
+
+        /* --- PAGE 6: TERMS & CONDITIONS --- */
+        .terms-container {
+            max-width: 1000px;
+            width: 100%;
+            background: var(--card-bg);
+            border: 1px solid var(--primary-accent);
+            border-radius: 12px;
+            padding: 40px;
+            height: 65vh;
+            overflow-y: auto;
+            text-align: left;
+            color: #d1d1d1;
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
+        .terms-container::-webkit-scrollbar {
+            width: 10px;
+        }
+        .terms-container::-webkit-scrollbar-track {
+            background: rgba(0,0,0,0.2); 
+            border-radius: 10px;
+        }
+        .terms-container::-webkit-scrollbar-thumb {
+            background: var(--secondary-accent); 
+            border-radius: 10px;
+        }
+
+        .terms-container h3 {
+            color: var(--text-main);
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-family: 'Blanka', 'Orbitron', sans-serif;
+            font-size: 1.3rem;
+            letter-spacing: 1px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 5px;
+        }
+
+        .terms-container p, .terms-container li {
+            margin-bottom: 12px;
+        }
+
+        .terms-container ul {
+            padding-left: 20px;
+        }
+
+        /* --- MOBILE OPTIMIZATION --- */
+        @media (max-width: 768px) {
+            nav {
+                padding: 15px 20px;
+                flex-direction: column;
+                gap: 15px;
+            }
+            .nav-links {
+                gap: 15px;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            .nav-links li {
+                font-size: 12px;
+            }
+            .page {
+                padding: 150px 20px 60px; /* Accommodate stacked navbar */
+            }
+            .hero-logo-container::before {
+                width: 250px;
+                height: 250px;
+            }
+            .hero-logo {
+                max-width: 250px;
+            }
+            .hero-subtitle {
+                font-size: 1rem;
+                letter-spacing: 2px;
+                text-align: center;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+            .content-box {
+                font-size: 1rem;
+            }
+            .team-card, .price-card {
+                width: 100%;
+                max-width: 320px;
+            }
+            .contact-handle {
+                font-size: 1.2rem;
+                word-break: break-word;
+            }
+            .terms-container {
+                padding: 20px;
+                height: 70vh;
+            }
         }
     </style>
 </head>
@@ -319,6 +450,7 @@
             <li onclick="navTo('team')">FOUNDERS</li>
             <li onclick="navTo('pricing')">PLANS</li>
             <li onclick="navTo('contact')">CONTACT</li>
+            <li onclick="navTo('terms')">T&C</li>
         </ul>
     </nav>
 
@@ -372,42 +504,145 @@
         </div>
     </section>
 
-    <!-- PAGE 5: PRICING -->
+    <!-- PAGE 4: PRICING -->
     <section id="pricing" class="page">
         <h2 class="section-title">Plans (Per 10 Mins)</h2>
         <div class="pricing-grid">
             
             <div class="price-card">
                 <div class="price-title">Standard</div>
-                <div class="price-amount">Rs.60 <span>/ 10m</span></div>
-                <p class="price-desc">Pure console performance. Jump into your favorite titles on our next-gen PS5 setups.</p>
-                <div class="team-role">Gaming PS5</div>
+                <div class="price-amount">Rs.100 <span>/ 10m</span></div>
+                <p class="price-desc">Pure hardware performance. Jump into your favorite titles on our next-gen setups.</p>
+                <div class="team-role">Gaming PS5 / PC</div>
             </div>
 
             <div class="price-card">
                 <div class="price-title">Immersive</div>
-                <div class="price-amount">Rs.119 <span>/ 10m</span></div>
-                <p class="price-desc">Step inside the game. Experience the next level of immersion with our PS5 and Virtual Reality combo.</p>
-                <div class="team-role">Gaming PS5 + VR</div>
+                <div class="price-amount">Rs.150 <span>/ 10m</span></div>
+                <p class="price-desc">Step inside the game. Experience the next level of immersion with our premium Virtual Reality combo.</p>
+                <div class="team-role">Gaming PS5 / PC + VR</div>
             </div>
 
             <div class="price-card pro">
                 <div class="price-title">Ultimate</div>
-                <div class="price-amount">Rs.249 <span>/ 10m</span></div>
+                <div class="price-amount">Rs.250 <span>/ 10m</span></div>
                 <p class="price-desc">The pinnacle of digital motorsport. Full tactile feedback and complete immersion.</p>
-                <div class="team-role">PS5 + VR + G29 Full Sim Racing</div>
+                <div class="team-role">PS5 / PC + VR + G29 Full Sim Racing</div>
             </div>
 
         </div>
     </section>
 
-    <!-- PAGE 4: CONTACT -->
+    <!-- PAGE 5: CONTACT -->
     <section id="contact" class="page">
         <h2 class="section-title">Contact Us</h2>
         <p style="color: #b0b0b0; margin-top: 20px;">Join the community and stay updated:</p>
+        
         <a href="https://instagram.com/noxentertainmentsystem" target="_blank" class="contact-handle">
-            @noxentertainmentsystem
+            Instagram: @noxentertainmentsystem
         </a>
+
+        <div class="contact-grid">
+            <div class="contact-item">
+                <span class="contact-name">Yuvaan Sood</span>
+                <span class="contact-number">+91 6284 300 385</span>
+            </div>
+            <div class="contact-item">
+                <span class="contact-name">Aarav Dandona</span>
+                <span class="contact-number">+91 62801 33746</span>
+            </div>
+            <div class="contact-item">
+                <span class="contact-name">Panshul Sachdeva</span>
+                <span class="contact-number">+91 98774 68013</span>
+            </div>
+            <div class="contact-item">
+                <span class="contact-name">Zorawar Singh</span>
+                <span class="contact-number">+91 87995 00001</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- PAGE 6: TERMS & CONDITIONS -->
+    <section id="terms" class="page">
+        <h2 class="section-title">Terms & Conditions</h2>
+        <div class="terms-container">
+            <h3>PREAMBLE: BINDING COVENANT AND IRREVOCABLE OMNILATERAL CONSENT</h3>
+            <p>Welcome to the NOX Entertainment System. By initiating a physical, digital, or transactional presence within our facility, and by engaging with any hardware or services provided herein, you systematically and irrevocably agree to be bound by the entirety of these expanded Terms and Conditions. A prominent, summarized display of our foundational house mandates is conspicuously visible at the facility entrance, whilst full, unrestricted access to this exhaustive document is permanently available at the counter operations terminal. By finalizing your reservation protocols and verbally acknowledging our fundamental house directives to authorized NOX personnel prior to capital exchange, you enter into a legally binding, non-negotiable covenant with NOX Entertainment System.</p>
+
+            <h3>ARTICLE I: UNILATERAL MODIFICATIONS, JURISPRUDENCE & CODE OF CONDUCT</h3>
+            <p><strong>Section 1.01: Unrestricted Rule Modification Authority:</strong> NOX Entertainment System explicitly reserves the absolute prerogative to append, amend, or completely reconstruct these terms of service with a formalized 48-hour notification horizon, which shall be publicly posted at the facility thresholds and across our digital infrastructure. Any modifications explicitly categorized under emergency safety protocols shall circumvent this notification period and take immediate, undeniable effect. It is noted that any formalized modifications apply solely to future temporal bookings and do not retroactively alter the parameters of sessions currently in active operation.</p>
+            <p><strong>Section 1.02: Exacting Code of Conduct:</strong> We mandate an uncompromising expectation that all patrons shall rigorously adhere to our established House Rules. NOX personnel operate under specialized training protocols to issue ONE unambiguously articulated verbal warning, accompanied by a situational explanation, prior to the mandatory enactment of session termination protocols. The primary pillars of expected engagement include:</p>
+            <ul>
+                <li>The absolute maintenance of vocal projections strictly at, or below, a reasonable conversational decibel threshold.</li>
+                <li>The exhibition of extreme care, gentleness, and physical restraint when manipulating all controllers, virtual reality matrices, hardware interfaces, and associated peripheral equipment.</li>
+                <li>The requirement to remain physically anchored in designated seating coordinates, coupled with a categorical prohibition against erratic kinetic movements or running within the facility confines.</li>
+                <li>The instantaneous, unquestioning adherence to directives issued by NOX staff, with particular uncompromising emphasis on instructions pertaining to Virtual Reality spatial safety boundaries.</li>
+            </ul>
+
+            <h3>ARTICLE II: FIDUCIARY PREREQUISITES, TEMPORAL OUTAGES & CANCELLATIONS</h3>
+            <p><strong>Section 2.01: Reservation Integrity & Financial Protocols:</strong> NOX possesses the authority to nullify reservations solely under reasonable, extensively documented situational circumstances. The NOX economic framework operates exclusively upon a strict, pre-paid, non-negotiable infrastructure accepting fiat currency (Cash) or authorized digital asset transfers (Unified Payments Interface - UPI).</p>
+            <p><strong>Section 2.02: Force Majeure & Technological Disruption Policy:</strong> The allocation of liability during technological interruptions is strictly delineated as follows:</p>
+            <ul>
+                <li><strong>Covered by NOX (Compensatory Authorization Granted):</strong> Hard console crashes or computational freezes exceeding a continuous duration of five (5) minutes will result in the precise equivalent of lost temporal units being appended to the active session. PlayStation Network (PSN) or centralized server outages restricting online multiplayer engagement will authorize the customer to seamlessly transition to offline software alternatives. Total regional power grid failures mandate the issuance of a complete fiscal refund strictly calculated against the remaining, unutilized temporal balance. Localized Internet Service Provider (ISP) severances during online-exclusive engagements permit either a fiscal refund or a transition to alternative gaming media.</li>
+                <li><strong>NOT Covered (Absolute Customer Responsibility - Zero Refund Eligibility):</strong> The deliberate selection of software requiring active, uninitiated patch updates upon primary launch. The negligent failure of the patron to ascertain and verify controller battery charge reserves prior to the initiation of the session timer. Subjective complications arising from game difficulty curves (e.g., the inability of the user to successfully navigate or conquer a specific software challenge or level).</li>
+            </ul>
+
+            <h3>ARTICLE III: HARDWARE SANCTITY & KINETIC SIMULATION (SIM RIG) PROTOCOLS</h3>
+            <p><strong>Section 3.01: Strict Damage Liability:</strong> Patrons bear the ultimate, uncompromising financial liability for all physical equipment placed under their operational control. In the documented event of hardware damage—precipitated by misuse, gross negligence, or manifestations of aggressive behavior—the culpable party is immediately and legally obligated to remit the full, unprorated retail replacement valuation of the compromised asset.</p>
+            <p><strong>Section 3.02: Precision Sim Rig Safety & Calibration Mandates:</strong> The preliminary calibration of the Kinetic Simulation Chassis must be exclusively executed by certified NOX personnel to guarantee ergonomic integrity and physical safety.</p>
+            <ul>
+                <li><strong>Spatial Seating Calibration:</strong> The operator's chassis distance must be manipulated until the patron can effectively engage the pedal array whilst maintaining a medically recommended slight flexure of the knee joint.</li>
+                <li><strong>Steering Column Elevation:</strong> The tactile rotational interface (wheel) must be positioned to accommodate a relaxed, biomechanically safe arm posture, approximating a 120-degree elbow articulation.</li>
+                <li><strong>Final Clearance Test:</strong> Operating staff will issue the verbal confirmation protocol: "Can you fully and comfortably depress all three pedals to their maximum compression state?"</li>
+                <li><strong>Absolute Safety Override:</strong> Should any patron report biomechanical discomfort or exhibit an inability to adequately reach the operational controls, NOX staff are under strict mandate to either completely recalibrate the apparatus or immediately execute a full financial refund. Under absolutely no conceivable circumstances shall a simulation session proceed utilizing an ergonomically unsafe hardware configuration.</li>
+            </ul>
+
+            <h3>ARTICLE IV: BIO-SECURITY, HYGIENE & CALORIC RESTRICTIONS</h3>
+            <p><strong>Section 4.01: Baseline Entry Requirements & Biological Sanitation:</strong></p>
+            <ul>
+                <li><strong>Mandatory Hygiene Standards:</strong> All traversing entities must display clean epidermal hand surfaces, enforced via the mandatory application of the chemical sanitizer station prominently located at the facility threshold.</li>
+                <li><strong>Symptomatic Illness Refusal:</strong> Facility access will be immediately and irrevocably denied to any individual projecting visible or audible symptoms of biological illness, encompassing but not limited to heavy persistent coughing, erratic sneezing, or observable febrile conditions (fever).</li>
+                <li><strong>General Environmental Comfort:</strong> A baseline standard of personal hygiene is strictly required. NOX operational staff reserve the unilateral right to physically intervene and terminate sessions should multiple, corroborated patron complaints be registered regarding severe disruptions to the shared atmospheric environment of the facility.</li>
+            </ul>
+            <p><strong>Section 4.02: The Absolute Prohibition of Sustenance:</strong> The introduction of external caloric sustenance (food) and hydration vessels (beverages of any classification) is strictly, aggressively prohibited within the proximity of any technological setups. In the event of an accidental particulate or liquid dispersal (a "spill") that generates an environmental hazard but miraculously circumvents hardware destruction, the offending patron is legally bound to remit a punitive sanitation levy scaling from ₹500 to ₹5,000 INR (determined by severity assessment), OR they must independently facilitate immediate, professional-grade sanitation remediation that identically matches NOX’s exacting internal cleanliness parameters.</p>
+
+            <h3>ARTICLE V: SOFTWARE ECOSYSTEMS & AGE-APPROPRIATE DIGITAL CONSUMPTION</h3>
+            <p><strong>Section 5.01: Age-Gated Game Access Architecture:</strong> NOX meticulously complies with standardized international software rating paradigms to ensure the psychological safeguarding of biological minors.</p>
+            <ul>
+                <li><strong>Ages 7 to 12:</strong> Strict compartmentalization to 'E' (Everyone) and 'E10+' classified software environments.</li>
+                <li><strong>Ages 13 to 17:</strong> Elevated clearance permitting engagement with up to 'T' (Teen) rated software. Access to 'M' (Mature 17+) rated environments necessitates the confirmed, physical presence of a legal guardian, coupled with the execution of a formalized liability waiver.</li>
+                <li><strong>Ages 18+:</strong> Unrestricted omnilateral software access, contingent upon the presentation of authorized terrestrial identification credentials prior to the inaugural 'M-rated' session.</li>
+                <li><strong>Parental Accountability Notice:</strong> NOX mandates the understanding that specific software ecosystems encompass simulated violence, intense expletives, and mature thematic elements. The burden of moral monitoring regarding a minor's software selection falls entirely and exclusively upon the accompanying parental unit. NOX employs automated "Family Mode" architectural restrictions to proactively lock out 'M-rated' titles on universally accessible hardware endpoints.</li>
+            </ul>
+
+            <h3>ARTICLE VI: MULTIPLAYER DYNAMICS, SPECTATOR DENSITY & ESCALATION PROTOCOLS</h3>
+            <p><strong>Section 6.01: Hardware Allocation & Multiplayer Architecture:</strong></p>
+            <ul>
+                <li><strong>Single Player Ecosystems:</strong> The ratio of paying patron to interface hardware is strictly one-to-one (1:1). The unauthorized transfer, handoff, or passing of a controller to secondary entities during a competitive single-player temporal block is an actionable violation of protocol.</li>
+                <li><strong>Multiplayer Ecosystems:</strong> Patrons wishing to engage in collaborative or competitive environments must initiate a formalized "2-Player Session" (incurring a 1.5x scalar to the base temporal rate) or a maximum-capacity party session accommodating up to four operators (incurring a 2.0x scalar). Authorized NOX personnel will distribute the necessary supplementary hardware interfaces at the session genesis.</li>
+            </ul>
+            <p><strong>Section 6.02: Progressive Behavioral Escalation Matrix:</strong></p>
+            <ol>
+                <li><strong>The Initial Verbal Interdiction:</strong> "Please exercise gentleness with the hardware interface / kindly reduce your vocal amplitude."</li>
+                <li><strong>The Temporal Pause and Final Ultimatum:</strong> The session timer is manually halted, accompanied by the declaration: "We require you to immediately de-escalate your behavior, or this session will face permanent termination."</li>
+                <li><strong>Complete Session Annihilation:</strong> The instantaneous, unceremonious physical removal of the patron from the facility premises, accompanied by a total forfeiture of all remaining funds.</li>
+            </ol>
+            <p><strong>Section 6.03: The Protocol of Last Resort (Physical Intervention):</strong> NOX staff are authorized to initiate direct physical intervention solely within the incredibly narrow window of imminent, catastrophic equipment destruction (e.g., an observable kinetic wind-up preceding the high-velocity projection of a controller). In such extreme scenarios, staff will project a highly audible verbal warning ("I am seizing the controller to ensure hardware safety"). This action instantaneously terminates the session with zero fiscal refund. Should the hostile entity refuse to vacate the premises, regional law enforcement authorities will be summoned immediately. <strong>Strict Internal Mandate:</strong> Under no circumstances will NOX personnel aggressively wrench controllers from patrons engaged in standard, safe gameplay, forcefully remove Virtual Reality optics (to prevent severe cervical spinal injuries), or initiate unnecessary physical contact with a patron's biological person.</p>
+
+            <h3>ARTICLE VII: TOTAL LIABILITY WAIVERS, PANOPTIC PRIVACY & ASSET RECOVERY</h3>
+            <p><strong>Section 7.01: Unconditional Assumption of Risk:</strong> The patron unconditionally, legally, and biologically assumes all risk profiles associated with hardware engagement, including but not limited to: severe motion sickness induced by Virtual Reality immersion (regarding which patrons are thoroughly warned prior to session genesis), intense muscular fatigue resulting from protracted simulation engagement, the potential for kinetic tripping hazards over clearly demarcated cabling infrastructures, and any array of self-inflicted injuries born from reckless or uncoordinated physical behavior. To counter these risks, NOX maintains rigorous, mathematically logged hardware inspections, enforces mathematically defined VR spatial boundaries, stations comprehensive first aid arrays within the facility, and systematically harvests emergency contact routing data at the point of initial patron sign-in.</p>
+            <p><strong>Section 7.02: Panoptic Observation & Media Distribution Rights:</strong></p>
+            <ul>
+                <li><strong>Corporate Marketing Exploitation:</strong> During the formalized sign-in and booking sequence, all patrons will be presented with a voluntary opt-in digital checkbox explicitly querying: "May we capture and distribute visual media of your gaming engagement across our global social media channels?"</li>
+                <li><strong>Peer-to-Peer Recording Restrictions:</strong> Operators possess the inherent right to capture visual/audio data exclusively of their own personal gameplay instances. The unauthorized recording, capturing, or broadcasting of secondary, non-consenting patrons is a gross violation of facility protocol. NOX staff retain the absolute authority to order the immediate cessation of any recording activity deemed disruptive or invasive.</li>
+            </ul>
+            <p><strong>Section 7.03: Comprehensive Asset Recovery & Liquidation Framework (Lost & Found):</strong></p>
+            <ul>
+                <li><strong>Asset Purgatory:</strong> Recovered personal artifacts are sequestered within a highly secure holding environment for a strict duration of ninety (90) chronological days. To initiate a recovery claim, patrons must supply an exhaustive physical description of the artifact. The reclamation of high-value electronic assets (mobile devices, digital wallets) strictly requires the presentation of matching terrestrial identification documents.</li>
+                <li><strong>Proactive Notification Protocols:</strong> Should the recovered artifact contain observable or accessible contact routing data, NOX personnel will execute an immediate telephonic notification protocol. Unidentified, orphaned artifacts will be cataloged and broadcast across NOX's social media infrastructure utilizing the following template: "Unidentified personal asset recovered within the facility on [Date]. Please initiate a Direct Message transmission containing specific identifying criteria to initiate recovery."</li>
+                <li><strong>Post-Purgatory Liquidation:</strong> Upon the expiration of the 90-day holding epoch, all usable assets will be permanently donated to localized charitable organizations. Any perishable goods or items classified as detritus will be immediately incinerated or disposed of. High-value electronic orphans will undergo commercial liquidation, with 100% of the generated fiscal proceeds systematically donated to a registered local charity (with exhaustive, transparent digital receipts subsequently posted across all NOX communication channels to verify ethical compliance).</li>
+            </ul>
+        </div>
     </section>
 
     <!-- INTERNAL JAVASCRIPT FOR NAVIGATION -->
