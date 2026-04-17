@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOX | Gaming is for everyone</title>
+    <style>
+        /* --- FONTS --- */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Orbitron:wght@700;900&display=swap');
+
+        /* --- VARIABLES --- */
+        :root {
+            --bg-color: #412C47;
+            --text-main: #ffffff;
+            --primary-accent: #1e1421; /* Darkened for contrast against the new background */
+            --secondary-accent: #b0a3b5; /* Lightened purplish-grey for better readability */
+            --card-bg: rgba(0, 0, 0, 0.25); /* Translucent dark for cards */
+        }
+
+        /* --- GLOBAL STYLES --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        h1, h2, h3, .logo-text, .nav-links li, .price-amount {
+            /* Prioritizes Blanka if installed, falls back to Orbitron */
+            font-family: 'Blanka', 'Orbitron', sans-serif; 
+            letter-spacing: 2px;
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(65, 44, 71, 0.95); /* Matches background with slight transparency */
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logo-text {
+            font-size: 24px;
+            color: var(--text-main);
+            cursor: pointer;
+            text-shadow: 0 0 10px var(--primary-accent);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .nav-logo-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Navbar logo blending effect */
+        .nav-logo-container::before {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle, var(--bg-color) 0%, transparent 70%);
+            z-index: -1;
+            opacity: 0.8;
+            filter: blur(5px);
+        }
+
+        .logo-img {
+            height: 60px; /* Adjusted to show full logo comfortably in navbar */
+            width: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 0 5px var(--primary-accent));
+            border-radius: 4px;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links li {
+            cursor: pointer;
+            font-size: 14px;
+            color: var(--secondary-accent);
+            transition: color 0.3s, text-shadow 0.3s;
+        }
+
+        .nav-links li:hover, .nav-links li.active-link {
+            color: var(--text-main);
+            text-shadow: 0 0 8px var(--secondary-accent);
+        }
+
+        /* --- PAGE CONTAINER (SPA LOGIC) --- */
+        .page {
+            display: none;
+            flex: 1;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 120px 20px 60px;
+            text-align: center;
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        .page.active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- PAGE 1: HOME --- */
+        .hero-logo-container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        /* Deep blending effect for the main logo */
+        .hero-logo-container::before {
+            content: '';
+            position: absolute;
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle, var(--bg-color) 15%, transparent 70%);
+            z-index: -1;
+            opacity: 1;
+            filter: blur(15px);
+        }
+
+        .hero-logo {
+            max-width: 350px; /* Shows full logo */
+            height: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 0 15px var(--primary-accent));
+            border-radius: 12px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--secondary-accent);
+            font-weight: 300;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-top: 15px;
+        }
+
+        /* --- PAGE 2: ABOUT US --- */
+        .content-box {
+            max-width: 800px;
+            line-height: 1.8;
+            font-size: 1.1rem;
+            color: #d1d1d1;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            color: var(--text-main);
+            border-bottom: 2px solid var(--primary-accent);
+            padding-bottom: 10px;
+        }
+
+        /* --- PAGE 3: FOUNDERS --- */
+        .team-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            max-width: 1200px;
+        }
+
+        .team-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(122, 107, 128, 0.3);
+            border-radius: 12px;
+            padding: 30px;
+            width: 280px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .team-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(65, 44, 71, 0.4);
+        }
+
+        .team-name {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        .team-role {
+            font-size: 0.9rem;
+            color: var(--primary-accent);
+            font-weight: 600;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .team-desc {
+            font-size: 0.85rem;
+            color: #b0b0b0;
+            line-height: 1.5;
+        }
+
+        /* --- PAGE 5: PRICING --- */
+        .pricing-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            max-width: 1000px;
+            margin-top: 20px;
+        }
+
+        .price-card {
+            background: linear-gradient(180deg, var(--card-bg) 0%, rgba(10,10,10,0) 100%);
+            border: 1px solid var(--primary-accent);
+            border-radius: 15px;
+            padding: 40px 30px;
+            width: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+
+        .price-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .price-card.pro {
+            border-color: var(--secondary-accent);
+            box-shadow: 0 0 25px rgba(65, 44, 71, 0.6);
+        }
+
+        .price-title {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: var(--secondary-accent);
+        }
+
+        .price-amount {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .price-amount span {
+            font-size: 1rem;
+            font-family: 'Inter', sans-serif;
+            color: #888;
+            letter-spacing: 0;
+        }
+
+        .price-desc {
+            font-size: 0.9rem;
+            color: #ccc;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        /* --- PAGE 4: CONTACT --- */
+        .contact-handle {
+            font-size: 2rem;
+            color: var(--secondary-accent);
+            text-decoration: none;
+            transition: color 0.3s, text-shadow 0.3s;
+            margin-top: 20px;
+        }
+
+        .contact-handle:hover {
+            color: var(--text-main);
+            text-shadow: 0 0 15px var(--primary-accent);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav>
+        <div class="logo-text" onclick="navTo('home')">
+            <div class="nav-logo-container">
+                <img src="logo.png" alt="NOX Logo" class="logo-img"> 
+            </div>
+        </div>
+        <ul class="nav-links">
+            <li class="active-link" onclick="navTo('home')">HOME</li>
+            <li onclick="navTo('about')">ABOUT</li>
+            <li onclick="navTo('team')">FOUNDERS</li>
+            <li onclick="navTo('pricing')">PLANS</li>
+            <li onclick="navTo('contact')">CONTACT</li>
+        </ul>
+    </nav>
+
+    <!-- PAGE 1: HOME -->
+    <section id="home" class="page active">
+        <div class="hero-logo-container">
+            <img src="logo.png" alt="NOX Main Logo" class="hero-logo">
+        </div>
+        <p class="hero-subtitle">Gaming is for everyone</p>
+    </section>
+
+    <!-- PAGE 2: ABOUT US -->
+    <section id="about" class="page">
+        <h2 class="section-title">About Us</h2>
+        <div class="content-box">
+            <p>We love gaming. As gamers, we believe that this beautiful hobby should be shared with as many people as possible. The reality is that most people don't have access to high-end gaming equipment or immersive setups.</p>
+            <br>
+            <p>At NOX, our mission is to break down those barriers. We want to provide the ultimate experience to more people, making premium gaming truly accessible. We aren't just here to let you play; we want to extend gaming beyond a hobby and build a community where everyone can experience the thrill of top-tier technology.</p>
+        </div>
+    </section>
+
+    <!-- PAGE 3: FOUNDERS -->
+    <section id="team" class="page">
+        <h2 class="section-title">The Founders</h2>
+        <div class="team-grid">
+            
+            <div class="team-card">
+                <h3 class="team-name">Yuvaan Sood</h3>
+                <div class="team-role">Chief Executive Officer</div>
+                <p class="team-desc">Yuvaan has always been passionate about gaming. As an elite competitor, he leads our vision to help others experience the absolute best the gaming world has to offer.</p>
+            </div>
+
+            <div class="team-card">
+                <h3 class="team-name">Panshul Sachdeva</h3>
+                <div class="team-role">Chief Marketing Officer</div>
+                <p class="team-desc">The voice of NOX. Panshul is the leading hand in promoting the business, driving community engagement, and ensuring our brand's success reaches every gamer.</p>
+            </div>
+
+            <div class="team-card">
+                <h3 class="team-name">Zorawar Singh Grewal</h3>
+                <div class="team-role">Chief Operating Officer</div>
+                <p class="team-desc">Zorawar ensures our grand vision becomes reality. He oversees daily operations, making sure every customer walks into a perfectly maintained, premium environment.</p>
+            </div>
+
+            <div class="team-card">
+                <h3 class="team-name">Aarav Dandona</h3>
+                <div class="team-role">Chief Technology Officer</div>
+                <p class="team-desc">Aarav architects the digital and physical tech infrastructure at NOX. From optimizing server responses to calibrating the high-fidelity sim racing setups, he ensures flawless performance.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- PAGE 5: PRICING -->
+    <section id="pricing" class="page">
+        <h2 class="section-title">Plans (Per 10 Mins)</h2>
+        <div class="pricing-grid">
+            
+            <div class="price-card">
+                <div class="price-title">Standard</div>
+                <div class="price-amount">Rs.60 <span>/ 10m</span></div>
+                <p class="price-desc">Pure console performance. Jump into your favorite titles on our next-gen PS5 setups.</p>
+                <div class="team-role">Gaming PS5</div>
+            </div>
+
+            <div class="price-card">
+                <div class="price-title">Immersive</div>
+                <div class="price-amount">Rs.119 <span>/ 10m</span></div>
+                <p class="price-desc">Step inside the game. Experience the next level of immersion with our PS5 and Virtual Reality combo.</p>
+                <div class="team-role">Gaming PS5 + VR</div>
+            </div>
+
+            <div class="price-card pro">
+                <div class="price-title">Ultimate</div>
+                <div class="price-amount">Rs.249 <span>/ 10m</span></div>
+                <p class="price-desc">The pinnacle of digital motorsport. Full tactile feedback and complete immersion.</p>
+                <div class="team-role">PS5 + VR + G29 Full Sim Racing</div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- PAGE 4: CONTACT -->
+    <section id="contact" class="page">
+        <h2 class="section-title">Contact Us</h2>
+        <p style="color: #b0b0b0; margin-top: 20px;">Join the community and stay updated:</p>
+        <a href="https://instagram.com/noxentertainmentsystem" target="_blank" class="contact-handle">
+            @noxentertainmentsystem
+        </a>
+    </section>
+
+    <!-- INTERNAL JAVASCRIPT FOR NAVIGATION -->
+    <script>
+        function navTo(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            // Show the selected page
+            document.getElementById(pageId).classList.add('active');
+
+            // Update active link styling
+            document.querySelectorAll('.nav-links li').forEach(link => {
+                link.classList.remove('active-link');
+            });
+            // Find the clicked link by checking its onclick attribute
+            const activeNav = Array.from(document.querySelectorAll('.nav-links li')).find(
+                el => el.getAttribute('onclick') === `navTo('${pageId}')`
+            );
+            if(activeNav) activeNav.classList.add('active-link');
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
