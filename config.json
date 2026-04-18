@@ -1,0 +1,51 @@
+{
+  "staffPicks": [
+    {
+      "title": "F1 25",
+      "image": "https://image.api.playstation.com/vulcan/ap/rnd/202406/0409/5c9ed6ee11e49ff8280defe05fd88f82cfe7e9c0eb933ce3.png",
+      "description": "Experience the pinnacle of racing simulation with the most realistic F1 game ever created.",
+      "reason": "Perfect for our sim racing setup - feel every turn!"
+    },
+    {
+      "title": "Cyberpunk 2077",
+      "image": "https://image.api.playstation.com/vulcan/ap/rnd/202111/3013/cKZ4tKNFj9C00giTzYtH8PF1.png",
+      "description": "Dive into Night City's neon-lit dystopia with stunning visuals and immersive storytelling.",
+      "reason": "Showcase piece for our high-end graphics capabilities"
+    },
+    {
+      "title": "Spider-Man 2",
+      "image": "https://image.api.playstation.com/vulcan/ap/rnd/202306/1219/1c7b75d8ed9271516546560d219ad0b22ee0a263b367bb03.png",
+      "description": "Swing through New York City as both Peter Parker and Miles Morales in this action-packed adventure.",
+      "reason": "Staff favorite - the web-swinging never gets old!"
+    },
+    {
+      "title": "Valorant",
+      "image": "https://images.contentstack.io/v3/assets/bltb6530b271fddd0b1/blt1b83933d2bf2a8bb/6214b6d96d6cd00f2f23d1de/ValorantAgentsYr2_Raze_v1.jpg",
+      "description": "Master tactical FPS gameplay with unique agents and competitive action.",
+      "reason": "Perfect for team play and competitive sessions"
+    }
+  ],
+  "settings": {
+    "autoAdvanceCarousel": true,
+    "carouselIntervalSeconds": 5,
+    "particleCount": 80,
+    "enableCustomCursor": true,
+    "defaultTheme": "nox"
+  },
+  "promotions": {
+    "active": false,
+    "bannerText": "SPECIAL OFFER: Book 2 hours, get 30 minutes free!",
+    "bannerColor": "#FFD700"
+  },
+  "socialMedia": {
+    "instagram": "https://instagram.com/noxentertainmentsystem",
+    "facebook": "",
+    "twitter": "",
+    "discord": ""
+  },
+  "contact": {
+    "email": "info@noxentertainment.com",
+    "phone": "+91 6284 300 385",
+    "address": "Ludhiana, Punjab, India"
+  }
+}
