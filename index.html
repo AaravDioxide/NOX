@@ -6,42 +6,38 @@
   <title>NOX Entertainment System — Terms & Conditions</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:        #090b0f;
-      --surface:   #0e1117;
-      --surface2:  #141820;
-      --border:    #1e2535;
-      --accent:    #00c2ff;
-      --accent2:   #0066ff;
-      --warn:      #ff6b35;
-      --text:      #d4dbe8;
-      --muted:     #5a6478;
-      --heading:   #eef2ff;
-      --sidebar-w: 270px;
-      --header-h:  64px;
+      --bg:       #090b0f;
+      --surface:  #0e1117;
+      --border:   #1e2535;
+      --accent:   #00c2ff;
+      --accent2:  #0066ff;
+      --text:     #d4dbe8;
+      --muted:    #5a6478;
+      --heading:  #eef2ff;
+      --header-h: 64px;
     }
 
-    html { scroll-behavior: smooth; }
+    html, body { height: 100%; }
 
     body {
       background: var(--bg);
       color: var(--text);
       font-family: 'Sora', sans-serif;
-      font-size: 15px;
-      line-height: 1.75;
-      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
 
-    /* ── HEADER ─────────────────────────────────────── */
+    /* ── HEADER ── */
     header {
-      position: fixed;
-      top: 0; left: 0; right: 0;
+      position: sticky;
+      top: 0;
       height: var(--header-h);
-      background: rgba(9,11,15,0.92);
+      background: rgba(9,11,15,0.95);
       backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--border);
       display: flex;
@@ -49,6 +45,7 @@
       justify-content: space-between;
       padding: 0 2rem;
       z-index: 100;
+      flex-shrink: 0;
     }
 
     .header-brand {
@@ -57,18 +54,18 @@
       gap: 0.75rem;
     }
 
-    .header-brand .wordmark {
+    .wordmark {
       font-family: 'Orbitron', sans-serif;
       font-weight: 900;
       font-size: 1.1rem;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.14em;
       background: linear-gradient(90deg, var(--accent), var(--accent2));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
 
-    .header-brand .doc-label {
+    .doc-label {
       font-size: 0.72rem;
       font-weight: 500;
       letter-spacing: 0.15em;
@@ -78,642 +75,341 @@
       padding-left: 0.75rem;
     }
 
-    .btn-back {
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .btn {
       font-family: 'Sora', sans-serif;
       font-size: 0.78rem;
       font-weight: 600;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.06em;
       text-transform: uppercase;
-      color: var(--accent);
       text-decoration: none;
-      border: 1px solid rgba(0,194,255,0.25);
       padding: 0.45rem 1.1rem;
       border-radius: 4px;
       transition: background 0.2s, border-color 0.2s;
-    }
-    .btn-back:hover { background: rgba(0,194,255,0.08); border-color: var(--accent); }
-
-    /* ── LAYOUT ─────────────────────────────────────── */
-    .layout {
-      display: flex;
-      padding-top: var(--header-h);
-      min-height: 100vh;
+      cursor: pointer;
+      border: none;
     }
 
-    /* ── SIDEBAR ────────────────────────────────────── */
-    .sidebar {
-      width: var(--sidebar-w);
-      flex-shrink: 0;
-      position: sticky;
-      top: var(--header-h);
-      height: calc(100vh - var(--header-h));
-      overflow-y: auto;
-      border-right: 1px solid var(--border);
-      padding: 2rem 0;
-      background: var(--surface);
-      scrollbar-width: thin;
-      scrollbar-color: var(--border) transparent;
-    }
-
-    .sidebar-label {
-      font-size: 0.65rem;
-      font-weight: 600;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--muted);
-      padding: 0 1.5rem 0.75rem;
-    }
-
-    .sidebar nav a {
-      display: block;
-      padding: 0.5rem 1.5rem;
-      font-size: 0.8rem;
-      font-weight: 500;
-      color: var(--muted);
-      text-decoration: none;
-      border-left: 2px solid transparent;
-      transition: color 0.2s, border-color 0.2s, background 0.2s;
-      line-height: 1.4;
-    }
-    .sidebar nav a:hover,
-    .sidebar nav a.active {
+    .btn-outline {
       color: var(--accent);
-      border-left-color: var(--accent);
-      background: rgba(0,194,255,0.04);
-    }
-    .sidebar nav a.sub {
-      padding-left: 2.5rem;
-      font-size: 0.75rem;
-      font-weight: 400;
-    }
-
-    /* ── MAIN CONTENT ───────────────────────────────── */
-    .content {
-      flex: 1;
-      min-width: 0;
-      max-width: 860px;
-      padding: 3.5rem 4rem 6rem;
-    }
-
-    /* ── HERO BLOCK ─────────────────────────────────── */
-    .doc-hero {
-      margin-bottom: 3.5rem;
-      padding-bottom: 2.5rem;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .doc-hero .eyebrow {
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 0.75rem;
-    }
-
-    .doc-hero h1 {
-      font-family: 'Orbitron', sans-serif;
-      font-weight: 900;
-      font-size: clamp(1.8rem, 4vw, 2.6rem);
-      letter-spacing: 0.06em;
-      color: var(--heading);
-      line-height: 1.15;
-      margin-bottom: 0.6rem;
-    }
-
-    .doc-hero .subtitle {
-      font-size: 0.9rem;
-      color: var(--muted);
-      font-style: italic;
-      margin-bottom: 1.5rem;
-    }
-
-    .notice-box {
-      background: rgba(0,194,255,0.06);
-      border: 1px solid rgba(0,194,255,0.2);
-      border-left: 3px solid var(--accent);
-      border-radius: 6px;
-      padding: 1rem 1.25rem;
-      font-size: 0.85rem;
-      color: var(--text);
-      line-height: 1.6;
-    }
-    .notice-box strong { color: var(--accent); }
-    .notice-box a { color: var(--accent); }
-
-    /* ── SECTIONS ───────────────────────────────────── */
-    .tos-section {
-      margin-bottom: 3.5rem;
-      scroll-margin-top: calc(var(--header-h) + 1.5rem);
-    }
-
-    .article-header {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .article-num {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 0.65rem;
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--accent2);
-      background: rgba(0,102,255,0.1);
-      border: 1px solid rgba(0,102,255,0.25);
-      border-radius: 4px;
-      padding: 0.3rem 0.65rem;
-      white-space: nowrap;
-    }
-
-    h2.article-title {
-      font-family: 'Orbitron', sans-serif;
-      font-weight: 700;
-      font-size: 1.05rem;
-      letter-spacing: 0.05em;
-      color: var(--heading);
-    }
-
-    .article-divider {
-      height: 1px;
-      background: linear-gradient(90deg, var(--border) 0%, transparent 100%);
-      margin-bottom: 1.75rem;
-    }
-
-    h3.section-title {
-      font-family: 'Sora', sans-serif;
-      font-weight: 600;
-      font-size: 0.92rem;
-      letter-spacing: 0.04em;
-      color: var(--heading);
-      margin: 1.75rem 0 0.6rem;
-      padding-bottom: 0.4rem;
-      border-bottom: 1px solid var(--border);
-      scroll-margin-top: calc(var(--header-h) + 1.5rem);
-    }
-
-    p { margin-bottom: 0.85rem; font-size: 0.88rem; }
-
-    ul { padding-left: 1.5rem; margin-bottom: 0.85rem; }
-    li { font-size: 0.88rem; margin-bottom: 0.45rem; padding-left: 0.25rem; }
-
-    ol {
-      list-style: none;
-      counter-reset: steps;
-      padding-left: 0;
-      margin-bottom: 0.85rem;
-    }
-    ol li {
-      counter-increment: steps;
-      display: flex;
-      gap: 0.85rem;
-      align-items: flex-start;
-      padding: 0.65rem 0.85rem;
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      margin-bottom: 0.5rem;
-    }
-    ol li::before {
-      content: counter(steps);
-      font-family: 'Orbitron', sans-serif;
-      font-size: 0.7rem;
-      font-weight: 700;
-      color: var(--accent);
-      background: rgba(0,194,255,0.1);
       border: 1px solid rgba(0,194,255,0.25);
-      border-radius: 3px;
-      width: 1.6rem;
-      height: 1.6rem;
+      background: transparent;
+    }
+    .btn-outline:hover { background: rgba(0,194,255,0.08); border-color: var(--accent); }
+
+    .btn-solid {
+      color: #fff;
+      background: linear-gradient(135deg, var(--accent2), var(--accent));
+      border: 1px solid transparent;
+    }
+    .btn-solid:hover { opacity: 0.88; }
+
+    /* ── BANNER ── */
+    .banner {
+      background: rgba(0,194,255,0.05);
+      border-bottom: 1px solid rgba(0,194,255,0.15);
+      padding: 0.7rem 2rem;
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
       flex-shrink: 0;
-      margin-top: 0.1rem;
     }
 
-    .callout {
-      border-radius: 6px;
-      padding: 1rem 1.25rem;
-      margin: 1rem 0;
-      font-size: 0.85rem;
-    }
-    .callout.green {
-      background: rgba(0,200,120,0.05);
-      border: 1px solid rgba(0,200,120,0.2);
-      border-left: 3px solid #00c878;
-    }
-    .callout.green strong { color: #00c878; }
-    .callout.red {
-      background: rgba(255,80,60,0.05);
-      border: 1px solid rgba(255,80,60,0.2);
-      border-left: 3px solid #ff503c;
-    }
-    .callout.red strong { color: #ff503c; }
-    .callout.orange {
-      background: rgba(255,107,53,0.05);
-      border: 1px solid rgba(255,107,53,0.2);
-      border-left: 3px solid var(--warn);
-    }
-    .callout.orange strong { color: var(--warn); }
-    .callout ul { margin: 0.5rem 0 0; padding-left: 1.2rem; }
-    .callout li { margin-bottom: 0.35rem; }
-
-    .age-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.83rem;
-      margin: 1rem 0;
-    }
-    .age-table th {
-      background: var(--surface2);
-      color: var(--accent);
-      font-family: 'Orbitron', sans-serif;
-      font-size: 0.65rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      padding: 0.65rem 1rem;
-      text-align: left;
-      border: 1px solid var(--border);
-    }
-    .age-table td {
-      padding: 0.6rem 1rem;
-      border: 1px solid var(--border);
-      vertical-align: top;
+    .banner p {
+      font-size: 0.8rem;
+      color: var(--muted);
       line-height: 1.5;
     }
-    .age-table tr:nth-child(even) td { background: rgba(255,255,255,0.015); }
 
-    .doc-footer {
-      margin-top: 4rem;
-      padding: 2rem 2.5rem;
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      text-align: center;
+    .banner strong { color: var(--text); }
+
+    /* ── VIEWER ── */
+    .viewer-wrap {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
     }
-    .doc-footer p { font-size: 0.83rem; color: var(--muted); font-style: italic; margin-bottom: 0.4rem; }
-    .doc-footer strong {
+
+    /* Tab bar */
+    .tab-bar {
+      display: flex;
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
+      padding: 0 2rem;
+      flex-shrink: 0;
+    }
+
+    .tab {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 0.85rem 1.25rem;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+      background: none;
+      border-top: none;
+      border-left: none;
+      border-right: none;
+      font-family: 'Sora', sans-serif;
+    }
+    .tab:hover { color: var(--text); }
+    .tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+    /* Panels */
+    .panel { display: none; flex: 1; min-height: 0; }
+    .panel.active { display: flex; flex-direction: column; }
+
+    /* Embedded viewer panel */
+    #panel-view {
+      flex: 1;
+      position: relative;
+    }
+
+    .viewer-iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+      background: #fff;
+      flex: 1;
+    }
+
+    /* Fallback shown if iframe fails */
+    .iframe-fallback {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1.25rem;
+      padding: 3rem;
+      text-align: center;
+      flex: 1;
+    }
+    .iframe-fallback .icon {
+      font-size: 3rem;
+      line-height: 1;
+    }
+    .iframe-fallback h2 {
       font-family: 'Orbitron', sans-serif;
-      font-size: 0.8rem;
-      letter-spacing: 0.15em;
+      font-size: 1rem;
+      color: var(--heading);
+      letter-spacing: 0.06em;
+    }
+    .iframe-fallback p { font-size: 0.85rem; color: var(--muted); max-width: 420px; }
+
+    /* Download panel */
+    #panel-download {
+      align-items: center;
+      justify-content: center;
+      padding: 4rem 2rem;
+      text-align: center;
+      gap: 1.5rem;
+    }
+
+    #panel-download .dl-icon {
+      font-size: 4rem;
+      line-height: 1;
+    }
+
+    #panel-download h2 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.08em;
       color: var(--heading);
     }
 
-    #progress {
-      position: fixed;
-      top: var(--header-h);
-      left: 0;
-      height: 2px;
-      background: linear-gradient(90deg, var(--accent), var(--accent2));
-      width: 0%;
-      z-index: 200;
-      transition: width 0.1s linear;
+    #panel-download p {
+      font-size: 0.85rem;
+      color: var(--muted);
+      max-width: 400px;
+      line-height: 1.6;
     }
 
-    #totop {
-      position: fixed;
-      bottom: 2rem;
-      right: 2rem;
-      width: 40px;
-      height: 40px;
-      background: var(--surface2);
+    .dl-card {
+      background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 6px;
-      cursor: pointer;
+      border-radius: 10px;
+      padding: 2rem 2.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      max-width: 380px;
+      width: 100%;
+    }
+
+    .file-meta {
       display: flex;
       align-items: center;
-      justify-content: center;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s, background 0.2s;
-      z-index: 99;
-      color: var(--accent);
-      font-size: 1.1rem;
+      gap: 0.75rem;
+      background: rgba(0,194,255,0.05);
+      border: 1px solid rgba(0,194,255,0.15);
+      border-radius: 6px;
+      padding: 0.65rem 1rem;
+      width: 100%;
     }
-    #totop.visible { opacity: 1; pointer-events: all; }
-    #totop:hover { background: rgba(0,194,255,0.1); }
 
-    @media (max-width: 900px) {
-      .sidebar { display: none; }
-      .content { padding: 2rem 1.5rem 5rem; }
+    .file-meta .file-icon {
+      font-size: 1.6rem;
+      line-height: 1;
     }
-    @media (max-width: 500px) {
-      .header-brand .doc-label { display: none; }
-      .content { padding: 1.5rem 1rem 4rem; }
+
+    .file-meta .file-info { text-align: left; }
+    .file-meta .file-name {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--heading);
+    }
+    .file-meta .file-type {
+      font-size: 0.72rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 0.85rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.75rem;
+      color: var(--muted);
+      flex-shrink: 0;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    footer a { color: var(--accent); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    @media (max-width: 600px) {
+      .doc-label { display: none; }
+      header { padding: 0 1rem; }
+      .banner { padding: 0.6rem 1rem; }
+      .tab-bar { padding: 0 1rem; }
     }
   </style>
 </head>
 <body>
 
-<div id="progress"></div>
+  <header>
+    <div class="header-brand">
+      <span class="wordmark">NOX</span>
+      <span class="doc-label">Terms &amp; Conditions</span>
+    </div>
+    <div class="header-actions">
+      <a class="btn btn-outline" href="https://noxentertainmentsystem.com" target="_blank" rel="noreferrer">&#8592; Back to Site</a>
+      <a class="btn btn-solid" href="tos.docx" download="NOX_Terms_and_Conditions.docx">&#8595; Download</a>
+    </div>
+  </header>
 
-<header>
-  <div class="header-brand">
-    <span class="wordmark">NOX</span>
-    <span class="doc-label">Terms &amp; Conditions</span>
+  <div class="banner">
+    <p><strong>This is the full, legally binding Terms &amp; Conditions document.</strong> By booking or entering NOX facilities you agree to all clauses herein. A summary is available at <a href="https://noxentertainmentsystem.com/tos" style="color:var(--accent);">noxentertainmentsystem.com/tos</a>.</p>
   </div>
-  <a class="btn-back" href="https://noxentertainmentsystem.com" target="_blank" rel="noreferrer">&#8592; Back to Site</a>
-</header>
 
-<div class="layout">
+  <div class="viewer-wrap">
 
-  <aside class="sidebar">
-    <p class="sidebar-label">Contents</p>
-    <nav>
-      <a href="#preamble">Preamble</a>
-      <a href="#article1">Article I — Conduct</a>
-      <a href="#sec101" class="sub">§1.01 Rule Modifications</a>
-      <a href="#sec102" class="sub">§1.02 Code of Conduct</a>
-      <a href="#article2">Article II — Payments</a>
-      <a href="#sec201" class="sub">§2.01 Financial Protocols</a>
-      <a href="#sec202" class="sub">§2.02 Disruption Policy</a>
-      <a href="#article3">Article III — Hardware</a>
-      <a href="#sec301" class="sub">§3.01 Damage Liability</a>
-      <a href="#sec302" class="sub">§3.02 Sim Rig Protocols</a>
-      <a href="#article4">Article IV — Hygiene</a>
-      <a href="#sec401" class="sub">§4.01 Entry Requirements</a>
-      <a href="#sec402" class="sub">§4.02 Food Prohibition</a>
-      <a href="#article5">Article V — Age Ratings</a>
-      <a href="#article6">Article VI — Multiplayer</a>
-      <a href="#sec601" class="sub">§6.01 Session Types</a>
-      <a href="#sec602" class="sub">§6.02 Escalation Matrix</a>
-      <a href="#sec603" class="sub">§6.03 Physical Intervention</a>
-      <a href="#article7">Article VII — Liability</a>
-      <a href="#sec701" class="sub">§7.01 Assumption of Risk</a>
-      <a href="#sec702" class="sub">§7.02 Media Rights</a>
-      <a href="#sec703" class="sub">§7.03 Lost Property</a>
-    </nav>
-  </aside>
+    <div class="tab-bar">
+      <button class="tab active" data-panel="panel-view">&#128196; View Document</button>
+      <button class="tab" data-panel="panel-download">&#8595; Download</button>
+    </div>
 
-  <main class="content">
+    <!-- VIEW PANEL -->
+    <div class="panel active" id="panel-view">
+      <!--
+        GitHub Pages serves static files, so tos.docx is available at the same path.
+        We use Google Docs Viewer to render it inline. The viewer URL is:
+        https://docs.google.com/gview?url=<absolute-url-to-file>&embedded=true
+        The absolute URL is constructed from window.location at runtime (see script below).
+      -->
+      <iframe
+        id="docViewer"
+        class="viewer-iframe"
+        title="NOX Terms and Conditions"
+        allowfullscreen
+      ></iframe>
 
-    <div class="doc-hero">
-      <p class="eyebrow">Official Document</p>
-      <h1>Terms &amp; Conditions</h1>
-      <p class="subtitle">NOX Entertainment System — Full Binding Document</p>
-      <div class="notice-box">
-        <strong>Before you proceed:</strong> By booking, entering, or using NOX facilities, you agree to be bound by every clause in this document. A summary is available at the facility entrance and at <a href="https://noxentertainmentsystem.com/tos">noxentertainmentsystem.com/tos</a>. This page is the complete, legally binding version.
+      <!-- Shown if iframe fails to load -->
+      <div class="iframe-fallback" id="fallback">
+        <div class="icon">&#128196;</div>
+        <h2>Unable to preview document</h2>
+        <p>Your browser couldn't render the document inline. Download the file to read it — it opens in Microsoft Word, Google Docs, or any compatible app.</p>
+        <a class="btn btn-solid" href="tos.docx" download="NOX_Terms_and_Conditions.docx">&#8595; Download tos.docx</a>
       </div>
     </div>
 
-    <!-- PREAMBLE -->
-    <section class="tos-section" id="preamble">
-      <div class="article-header">
-        <span class="article-num">Preamble</span>
-        <h2 class="article-title">Binding Covenant &amp; Consent</h2>
+    <!-- DOWNLOAD PANEL -->
+    <div class="panel" id="panel-download">
+      <div class="dl-card">
+        <div class="dl-icon">&#128196;</div>
+        <h2>Download Document</h2>
+        <p>Save the full Terms &amp; Conditions to your device. Opens in Microsoft Word, Google Docs, LibreOffice, or any compatible app.</p>
+        <div class="file-meta">
+          <span class="file-icon">&#128196;</span>
+          <div class="file-info">
+            <div class="file-name">NOX_Terms_and_Conditions.docx</div>
+            <div class="file-type">Word Document (.docx)</div>
+          </div>
+        </div>
+        <a class="btn btn-solid" href="tos.docx" download="NOX_Terms_and_Conditions.docx" style="width:100%;text-align:center;">&#8595; Download Now</a>
       </div>
-      <div class="article-divider"></div>
-      <p>Welcome to the NOX Entertainment System. By initiating a physical, digital, or transactional presence within our facility and engaging with any hardware or services provided herein, you systematically and irrevocably agree to be bound by the entirety of these Terms and Conditions.</p>
-      <p>A summarized display of our foundational house rules is visible at the facility entrance, and full access to this document is permanently available at the counter operations terminal. By finalizing your reservation and verbally acknowledging our house directives to NOX personnel prior to payment, you enter into a legally binding, non-negotiable covenant with NOX Entertainment System.</p>
-    </section>
-
-    <!-- ARTICLE I -->
-    <section class="tos-section" id="article1">
-      <div class="article-header">
-        <span class="article-num">Article I</span>
-        <h2 class="article-title">Rule Modifications &amp; Code of Conduct</h2>
-      </div>
-      <div class="article-divider"></div>
-
-      <h3 class="section-title" id="sec101">Section 1.01 — Unrestricted Rule Modification Authority</h3>
-      <p>NOX Entertainment System explicitly reserves the absolute right to amend or reconstruct these terms of service with a formalized 48-hour notification horizon, publicly posted at the facility entrance and across our digital infrastructure.</p>
-      <ul>
-        <li>Emergency safety protocol amendments take immediate effect and are not subject to the 48-hour notice period.</li>
-        <li>Modifications apply solely to future bookings and do not retroactively alter parameters of sessions currently in active operation.</li>
-      </ul>
-
-      <h3 class="section-title" id="sec102">Section 1.02 — Code of Conduct</h3>
-      <p>We mandate that all patrons rigorously adhere to our established House Rules. NOX personnel will issue <strong>ONE verbal warning</strong> prior to mandatory session termination. Core conduct pillars:</p>
-      <ul>
-        <li>Maintain vocal projections at or below a reasonable conversational level.</li>
-        <li>Exercise extreme care and physical restraint when handling all controllers, VR equipment, and peripheral hardware.</li>
-        <li>Remain physically anchored in designated seating — erratic movements and running are strictly prohibited.</li>
-        <li>Adhere instantaneously to all directives issued by NOX staff, especially those pertaining to VR spatial safety boundaries.</li>
-      </ul>
-    </section>
-
-    <!-- ARTICLE II -->
-    <section class="tos-section" id="article2">
-      <div class="article-header">
-        <span class="article-num">Article II</span>
-        <h2 class="article-title">Financial Protocols, Outages &amp; Cancellations</h2>
-      </div>
-      <div class="article-divider"></div>
-
-      <h3 class="section-title" id="sec201">Section 2.01 — Reservation Integrity &amp; Financial Protocols</h3>
-      <p>NOX possesses the authority to nullify reservations only under reasonable, extensively documented circumstances. The NOX economic framework operates exclusively on a strict pre-paid infrastructure accepting:</p>
-      <ul>
-        <li><strong>Cash</strong> (fiat currency)</li>
-        <li><strong>UPI</strong> — Unified Payments Interface (authorized digital asset transfers)</li>
-      </ul>
-
-      <h3 class="section-title" id="sec202">Section 2.02 — Force Majeure &amp; Technological Disruption Policy</h3>
-      <div class="callout green">
-        <strong>&#10003; Covered by NOX — Compensation Authorized</strong>
-        <ul>
-          <li>Hard console crashes or freezes exceeding 5 continuous minutes: equivalent lost time appended to the active session.</li>
-          <li>PSN or server outages restricting online multiplayer: customer may seamlessly transition to offline alternatives.</li>
-          <li>Total regional power grid failures: full fiscal refund calculated against the remaining, unutilized time balance.</li>
-          <li>Localized ISP severances during online-exclusive sessions: patron may choose a fiscal refund or transition to alternative gaming media.</li>
-        </ul>
-      </div>
-      <div class="callout red">
-        <strong>&#10007; NOT Covered — Zero Refund Eligibility (Customer Responsibility)</strong>
-        <ul>
-          <li>Deliberate selection of software requiring active patch updates upon launch.</li>
-          <li>Failure to verify controller battery charge reserves prior to session initiation.</li>
-          <li>Subjective complications arising from game difficulty (inability to navigate a specific challenge or level).</li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- ARTICLE III -->
-    <section class="tos-section" id="article3">
-      <div class="article-header">
-        <span class="article-num">Article III</span>
-        <h2 class="article-title">Hardware Liability &amp; Sim Rig Protocols</h2>
-      </div>
-      <div class="article-divider"></div>
-
-      <h3 class="section-title" id="sec301">Section 3.01 — Strict Damage Liability</h3>
-      <p>Patrons bear the ultimate financial liability for all physical equipment under their operational control. In the event of hardware damage precipitated by misuse, gross negligence, or aggressive behavior, the culpable party is immediately obligated to remit the <strong>full retail replacement valuation</strong> of the compromised asset.</p>
-
-      <h3 class="section-title" id="sec302">Section 3.02 — Sim Rig Safety &amp; Calibration Mandates</h3>
-      <p>The preliminary calibration of the Kinetic Simulation Chassis must be exclusively executed by certified NOX personnel. Calibration procedure:</p>
-      <ul>
-        <li><strong>Spatial Seating:</strong> Chassis distance adjusted until the patron can engage the pedal array whilst maintaining a slight flexure of the knee joint.</li>
-        <li><strong>Steering Column Elevation:</strong> Wheel positioned to accommodate a relaxed arm posture approximating 120-degree elbow articulation.</li>
-        <li><strong>Final Clearance Test:</strong> Staff will confirm — <em>"Can you fully and comfortably depress all three pedals to their maximum compression state?"</em></li>
-      </ul>
-      <div class="callout orange">
-        <strong>&#9888; Absolute Safety Override:</strong> If any patron reports biomechanical discomfort or inability to reach controls, NOX staff must either fully recalibrate the apparatus or issue a complete refund. <strong>No simulation session shall proceed in an ergonomically unsafe configuration.</strong>
-      </div>
-    </section>
-
-    <!-- ARTICLE IV -->
-    <section class="tos-section" id="article4">
-      <div class="article-header">
-        <span class="article-num">Article IV</span>
-        <h2 class="article-title">Bio-Security, Hygiene &amp; Food Restrictions</h2>
-      </div>
-      <div class="article-divider"></div>
-
-      <h3 class="section-title" id="sec401">Section 4.01 — Baseline Entry Requirements &amp; Hygiene</h3>
-      <ul>
-        <li><strong>Mandatory Hygiene:</strong> All patrons must apply the chemical sanitizer provided at the facility entrance prior to entry.</li>
-        <li><strong>Symptomatic Illness Refusal:</strong> Facility access will be denied to any individual exhibiting visible symptoms of illness including persistent coughing, erratic sneezing, or observable fever.</li>
-        <li><strong>General Environmental Comfort:</strong> A baseline standard of personal hygiene is strictly required. NOX staff reserve the right to terminate sessions upon multiple corroborated patron complaints regarding severe atmospheric disruptions.</li>
-      </ul>
-
-      <h3 class="section-title" id="sec402">Section 4.02 — Absolute Prohibition of Food &amp; Beverages</h3>
-      <p>The introduction of external food and beverages of any classification is <strong>strictly prohibited</strong> within proximity of any technological setups.</p>
-      <p>In the event of an accidental spill that circumvents hardware destruction, the offending patron is legally bound to remit a punitive sanitation levy:</p>
-      <div class="callout orange">
-        <strong>&#8377;500 – &#8377;5,000 INR</strong> (severity-assessed) &mdash; OR &mdash; independently facilitate immediate professional-grade sanitation remediation matching NOX's internal cleanliness parameters.
-      </div>
-    </section>
-
-    <!-- ARTICLE V -->
-    <section class="tos-section" id="article5">
-      <div class="article-header">
-        <span class="article-num">Article V</span>
-        <h2 class="article-title">Software Ecosystems &amp; Age-Appropriate Content</h2>
-      </div>
-      <div class="article-divider"></div>
-
-      <h3 class="section-title">Section 5.01 — Age-Gated Game Access Architecture</h3>
-      <p>NOX complies with standardized international software rating paradigms to ensure the psychological safeguarding of minors.</p>
-      <table class="age-table">
-        <thead>
-          <tr>
-            <th>Age Group</th>
-            <th>Permitted Ratings</th>
-            <th>Conditions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>7 – 12</strong></td>
-            <td>E (Everyone), E10+</td>
-            <td>Strictly limited to age-appropriate titles only.</td>
-          </tr>
-          <tr>
-            <td><strong>13 – 17</strong></td>
-            <td>Up to T (Teen)</td>
-            <td>M (Mature 17+) requires confirmed physical presence of a legal guardian and execution of a formal liability waiver.</td>
-          </tr>
-          <tr>
-            <td><strong>18+</strong></td>
-            <td>Unrestricted</td>
-            <td>Valid government-issued ID required prior to the first M-rated session.</td>
-          </tr>
-        </tbody>
-      </table>
-      <div class="callout orange">
-        <strong>Parental Accountability Notice:</strong> The burden of moral monitoring of a minor's software selection falls entirely upon the accompanying parental unit. NOX employs automated 'Family Mode' restrictions to proactively lock out M-rated titles on universally accessible hardware endpoints.
-      </div>
-    </section>
-
-    <!-- ARTICLE VI -->
-    <section class="tos-section" id="article6">
-      <div class="article-header">
-        <span class="article-num">Article VI</span>
-        <h2 class="article-title">Multiplayer Dynamics &amp; Escalation Protocols</h2>
-      </div>
-      <div class="article-divider"></div>
-
-      <h3 class="section-title" id="sec601">Section 6.01 — Hardware Allocation &amp; Multiplayer Architecture</h3>
-      <ul>
-        <li><strong>Single Player (1:1):</strong> The ratio of paying patron to hardware is strictly one-to-one. Unauthorized transfer of a controller to secondary individuals is an actionable protocol violation.</li>
-        <li><strong>2-Player Session:</strong> 1.5&times; base rate. NOX personnel will distribute supplementary hardware at session genesis.</li>
-        <li><strong>Party Session (up to 4):</strong> 2.0&times; base rate. Maximum-capacity configuration for collaborative or competitive play.</li>
-      </ul>
-
-      <h3 class="section-title" id="sec602">Section 6.02 — Progressive Behavioral Escalation Matrix</h3>
-      <ol>
-        <li><span><strong>Initial Verbal Warning:</strong> "Please exercise gentleness with the hardware / kindly reduce your vocal amplitude."</span></li>
-        <li><span><strong>Temporal Pause &amp; Final Ultimatum:</strong> Session timer manually halted. Declaration: "We require you to immediately de-escalate your behavior, or this session will face permanent termination."</span></li>
-        <li><span><strong>Complete Session Termination:</strong> Instantaneous physical removal from the facility premises, accompanied by total forfeiture of all remaining funds.</span></li>
-      </ol>
-
-      <h3 class="section-title" id="sec603">Section 6.03 — Protocol of Last Resort (Physical Intervention)</h3>
-      <p>NOX staff are authorized to initiate direct physical intervention only within the narrow window of imminent, catastrophic equipment destruction. In such scenarios, staff will issue a loud verbal warning before seizing the controller, instantaneously terminating the session with zero refund. Regional law enforcement will be summoned if the hostile entity refuses to vacate.</p>
-      <div class="callout red">
-        <strong>&#10007; Strict Internal Mandate — Staff are prohibited from:</strong>
-        <ul>
-          <li>Aggressively wrenching controllers from patrons engaged in standard, safe gameplay.</li>
-          <li>Forcefully removing Virtual Reality optics from patrons (to prevent severe cervical spinal injuries).</li>
-          <li>Initiating unnecessary physical contact with a patron's person.</li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- ARTICLE VII -->
-    <section class="tos-section" id="article7">
-      <div class="article-header">
-        <span class="article-num">Article VII</span>
-        <h2 class="article-title">Liability Waivers, Privacy &amp; Asset Recovery</h2>
-      </div>
-      <div class="article-divider"></div>
-
-      <h3 class="section-title" id="sec701">Section 7.01 — Unconditional Assumption of Risk</h3>
-      <p>The patron unconditionally assumes all risk profiles associated with hardware engagement, including but not limited to:</p>
-      <ul>
-        <li>Severe motion sickness induced by Virtual Reality immersion (patrons are thoroughly warned prior to session genesis).</li>
-        <li>Intense muscular fatigue resulting from protracted simulation engagement.</li>
-        <li>Kinetic tripping hazards over clearly demarcated cabling infrastructures.</li>
-        <li>Any self-inflicted injuries born from reckless or uncoordinated physical behavior.</li>
-      </ul>
-      <p>To counter these risks, NOX maintains rigorous hardware inspections, enforces defined VR spatial boundaries, stations comprehensive first aid arrays within the facility, and collects emergency contact data at initial patron sign-in.</p>
-
-      <h3 class="section-title" id="sec702">Section 7.02 — Observation &amp; Media Distribution Rights</h3>
-      <ul>
-        <li><strong>Corporate Marketing:</strong> During the sign-in sequence, all patrons will be presented with a voluntary opt-in checkbox querying: <em>"May we capture and distribute visual media of your gaming engagement across our social media channels?"</em></li>
-        <li><strong>Peer-to-Peer Recording:</strong> Operators may record exclusively their own personal gameplay. Recording non-consenting patrons is a gross protocol violation. NOX staff retain the authority to order immediate cessation of any recording deemed disruptive or invasive.</li>
-      </ul>
-
-      <h3 class="section-title" id="sec703">Section 7.03 — Asset Recovery &amp; Lost Property</h3>
-      <ul>
-        <li><strong>Holding Period:</strong> Recovered personal artifacts are secured for a strict duration of <strong>90 days</strong>. Recovery requires an exhaustive physical description; high-value electronic assets additionally require matching identification documents.</li>
-        <li><strong>Proactive Notification:</strong> Should a recovered artifact contain accessible contact data, NOX personnel will execute an immediate telephonic notification. Unidentified artifacts will be cataloged and broadcast across NOX's social media channels.</li>
-        <li><strong>Post-Holding Liquidation:</strong> Upon expiration of the 90-day period, usable assets will be permanently donated to local charitable organizations. High-value electronic orphans will undergo commercial liquidation, with 100% of proceeds donated to a registered local charity — full transparent digital receipts posted across all NOX communication channels.</li>
-      </ul>
-    </section>
-
-    <div class="doc-footer">
-      <p>By proceeding with your reservation, you confirm you have read, understood, and agreed to these Terms &amp; Conditions.</p>
-      <p style="margin-top:0.75rem;"><strong>NOX ENTERTAINMENT SYSTEM</strong></p>
     </div>
 
-  </main>
-</div>
+  </div>
 
-<button id="totop" aria-label="Back to top">&#8593;</button>
+  <footer>
+    <span>&copy; NOX Entertainment System</span>
+    <span>Questions? <a href="https://noxentertainmentsystem.com/#contact">Contact us</a></span>
+  </footer>
 
-<script>
-  const bar = document.getElementById('progress');
-  window.addEventListener('scroll', () => {
-    const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
-    bar.style.width = pct + '%';
-  });
-
-  const totop = document.getElementById('totop');
-  window.addEventListener('scroll', () => totop.classList.toggle('visible', window.scrollY > 400));
-  totop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-
-  const navLinks = document.querySelectorAll('.sidebar nav a');
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + entry.target.id));
-      }
+  <script>
+    // ── Tab switching ──────────────────────────────────────────
+    document.querySelectorAll('.tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+        tab.classList.add('active');
+        document.getElementById(tab.dataset.panel).classList.add('active');
+      });
     });
-  }, { rootMargin: '-20% 0px -75% 0px' });
-  document.querySelectorAll('[id]').forEach(el => observer.observe(el));
-</script>
+
+    // ── Build Google Docs Viewer URL ───────────────────────────
+    // Constructs the absolute URL to tos.docx based on the current page origin + path,
+    // then feeds it to Google Docs Viewer for inline rendering.
+    (function () {
+      const base = window.location.href.replace(/\/[^\/]*$/, '');
+      const fileUrl = base + '/tos.docx';
+      const viewerUrl = 'https://docs.google.com/gview?url=' + encodeURIComponent(fileUrl) + '&embedded=true';
+
+      const iframe = document.getElementById('docViewer');
+      const fallback = document.getElementById('fallback');
+
+      iframe.src = viewerUrl;
+
+      // If the iframe fails to load within 8 seconds, show the fallback
+      let loaded = false;
+      iframe.addEventListener('load', () => { loaded = true; });
+      setTimeout(() => {
+        if (!loaded) {
+          iframe.style.display = 'none';
+          fallback.style.display = 'flex';
+        }
+      }, 8000);
+    })();
+  </script>
 
 </body>
 </html>
